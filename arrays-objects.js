@@ -19,3 +19,11 @@ function getTheAmountOfTheCheck(array) {
     let initialValue = 0;
     return array.reduce((accumulator, currentValue) => accumulator + currentValue.amount * currentValue.price, initialValue);
 }
+
+function getACheckObject(array) {
+    let result = [];
+    array.forEach(element => {
+        result.push({name: element[0], amount: element[1], price: element[2]});
+    });
+    return result;
+}
