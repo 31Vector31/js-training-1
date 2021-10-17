@@ -14,3 +14,8 @@ function findArithmeticMeanSecondDecision(array) {
     })
     return sum / amount;
 }
+
+function getTheAmountOfTheCheck(array) {
+    let initialValue = 0;
+    return array.reduce((accumulator, currentValue) => accumulator + currentValue.amount * currentValue.price, initialValue);
+}
