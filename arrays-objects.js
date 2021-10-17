@@ -27,3 +27,12 @@ function getACheckObject(array) {
     });
     return result;
 }
+
+function filterObject(obj) {
+    let result = {};
+    for (let prop in obj) {
+        if (prop.includes("a"))
+            result[prop] = obj[prop];
+    }
+    return result;
+}
