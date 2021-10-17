@@ -19,4 +19,32 @@ class CustomArray {
         this.array = temp;
         return lastElement;
     }
+
+    forEach(callback, thisArg = this.array) {
+        for (let i = 0; i < thisArg.length; i++) {
+            callback(thisArg[i], i, thisArg);
+        }
+    }
+
+    map(callback, thisArg = this.array) {
+        let result = [];
+        for (let i = 0; i < thisArg.length; i++) {
+            result[i] = callback(thisArg[i], i, thisArg);
+        }
+        return result;
+    }
+
+    filter(callback, thisArg = this.array) {
+        let result = [];
+        for (let i = 0, j = 0; i < thisArg.length; i++) {
+            if (callback(thisArg[i], i, thisArg)) result[j++] = thisArg[i];
+        }
+        return result;
+    }
+
+    find(callback, thisArg = this.array) {
+        for (let i = 0; i < thisArg.length; i++) {
+            if (callback(thisArg[i], i, thisArg)) return thisArg[i];
+        }
+    }
 }
