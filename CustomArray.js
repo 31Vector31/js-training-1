@@ -47,4 +47,18 @@ class CustomArray {
             if (callback(thisArg[i], i, thisArg)) return thisArg[i];
         }
     }
+
+    every(callback, thisArg = this.array) {
+        for (let i = 0; i < thisArg.length; i++) {
+            if (!callback(thisArg[i], i, thisArg)) return false;
+        }
+        return true;
+    }
+
+    some(callback, thisArg = this.array) {
+        for (let i = 0; i < thisArg.length; i++) {
+            if (callback(thisArg[i], i, thisArg)) return true;
+        }
+        return false;
+    }
 }
