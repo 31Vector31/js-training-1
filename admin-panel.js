@@ -45,3 +45,13 @@ function dataOutput() {
     });
     document.getElementById('admin-panel__table').innerHTML = table;
 }
+
+function deleteUser(index) {
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (!confirm(`Вы уверенны, что хотите удалить пользователя ${users[index].username}?`)) {
+        return;
+    }
+    users.splice(index, 1);
+    localStorage.setItem("users", JSON.stringify(users));
+    dataOutput();
+}
