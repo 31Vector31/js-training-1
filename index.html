@@ -5,6 +5,33 @@
     <title>Title</title>
 </head>
 <body>
+
+<div class="admin-panel">
+    <div class="admin-panel__form">
+        <input id="admin-panel__username">
+        <select id="admin-panel__department">
+            <option value="Разработка">Разработка</option>
+            <option value="Бухгалтерия">Бухгалтерия</option>
+            <option value="Менеджмент">Менеджмент</option>
+        </select>
+        <button id="admin-panel__save">Сохранить</button>
+    </div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Отдел</th>
+            <th>Дата создания записи</th>
+            <th>Дата обновления записи</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="admin-panel__table">
+        </tbody>
+    </table>
+</div>
+
 <script type="text/javascript" src="arrays-objects.js"></script>
 <script type="text/javascript" src="CustomArray.js"></script>
 </body>
