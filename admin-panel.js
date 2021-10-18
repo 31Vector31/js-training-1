@@ -4,7 +4,8 @@ dataOutput();
 let save = document.getElementById('admin-panel__save');
 save.onclick = () => {
     let users = JSON.parse(localStorage.getItem("users") || "[]");
-    let username = document.getElementById('admin-panel__username').value;
+    let username = document.getElementById('admin-panel__username').value.trim();
+    if (username == "") return;
     let department = document.getElementById('admin-panel__department').value;
     let currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     if (indexEditElement !== undefined) {
