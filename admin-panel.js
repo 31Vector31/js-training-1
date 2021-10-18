@@ -1,3 +1,4 @@
+let indexEditElement;
 dataOutput();
 
 let save = document.getElementById('admin-panel__save');
@@ -54,4 +55,15 @@ function deleteUser(index) {
     users.splice(index, 1);
     localStorage.setItem("users", JSON.stringify(users));
     dataOutput();
+}
+
+function editUser(index) {
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    users.forEach(function (user, i) {
+        if (i == index) {
+            document.getElementById('admin-panel__username').value = user.username;
+            document.getElementById('admin-panel__department').value = user.department;
+            indexEditElement = index;
+        }
+    });
 }
