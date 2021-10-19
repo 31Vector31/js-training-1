@@ -12,11 +12,7 @@ class CustomArray {
 
     pop() {
         let lastElement = this.array[this.array.length - 1];
-        let temp = [];
-        for (let i = 0; i < this.array.length - 1; i++) {
-            temp[i] = this.array[i];
-        }
-        this.array = temp;
+        this.array.length--;
         return lastElement;
     }
 
