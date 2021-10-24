@@ -1,23 +1,26 @@
+let username = document.querySelector('#admin-panel__username');
+let department = document.querySelector('#admin-panel__department');
+let adminPanelTable = document.querySelector('#admin-panel__table');
 let localStorageKey = "users";
 let indexEditElement;
 dataOutput();
 
-let save = document.getElementById('admin-panel__save');
+let save = document.querySelector('#admin-panel__save');
 save.onclick = () => {
     let users = localStorageGetItem(localStorageKey);
-    let username = document.getElementById('admin-panel__username').value.trim();
-    if (username == "") return;
-    let department = document.getElementById('admin-panel__department').value;
+    let usernameValue = username.value.trim();
+    if (usernameValue == "") return;
+    let departmentValue = department.value;
     let currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     if (indexEditElement !== undefined) {
-        users[indexEditElement].username = username;
-        users[indexEditElement].department = department;
+        users[indexEditElement].username = usernameValue;
+        users[indexEditElement].department = departmentValue;
         users[indexEditElement].updateDate = currentDate;
         indexEditElement = undefined;
     } else {
         let user = {
-            username: username,
-            department: department,
+            username: usernameValue,
+            department: departmentValue,
             creationDate: currentDate,
             updateDate: currentDate
         };
@@ -25,11 +28,11 @@ save.onclick = () => {
     }
     localStorageSetItem(localStorageKey, users);
     dataOutput();
-    document.getElementById('admin-panel__username').value = "";
-    document.getElementById('admin-panel__department').value = document.getElementById('admin-panel__department').options[0].value;
+    username.value = "";
+    department.value = department.options[0].value;
 }
 
-let table = document.getElementById('admin-panel__table');
+let table = document.querySelector('#admin-panel__table');
 table.onclick = (event) => {
     let target = event.target;
     let index = target.dataset.index;
@@ -50,13 +53,18 @@ function dataOutput() {
         <td><button class="admin-panel__deleteButton" data-index="${index}">Удалить</button></td>
     </tr>`;
     });
-    document.getElementById('admin-panel__table').innerHTML = table;
+    adminPanelTable.innerHTML = table;
 }
 
 function deleteUser(index) {
     let users = localStorageGetItem(localStorageKey);
     if (!confirm(`Вы уверенны, что хотите удалить пользователя ${users[index].username}?`)) {
         return;
+    }
+    if (indexEditElement === index) {
+        indexEditElement = undefined;
+        username.value = "";
+        department.value = department.options[0].value;
     }
     users.splice(index, 1);
     localStorageSetItem(localStorageKey, users);
@@ -65,8 +73,8 @@ function deleteUser(index) {
 
 function editUser(index) {
     let users = localStorageGetItem(localStorageKey);
-    document.getElementById('admin-panel__username').value = users[index].username;
-    document.getElementById('admin-panel__department').value = users[index].department;
+    username.value = users[index].username;
+    department.value = users[index].department;
     indexEditElement = index;
 }
 
