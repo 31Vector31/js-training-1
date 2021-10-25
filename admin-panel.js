@@ -1,11 +1,11 @@
 let username = document.querySelector('#admin-panel__username');
 let department = document.querySelector('#admin-panel__department');
 let adminPanelTable = document.querySelector('#admin-panel__table');
+let save = document.querySelector('#admin-panel__save');
 let localStorageKey = "users";
 let indexEditElement;
 dataOutput();
 
-let save = document.querySelector('#admin-panel__save');
 save.onclick = () => {
     let users = localStorageGetItem(localStorageKey);
     let usernameValue = username.value.trim();
@@ -32,8 +32,7 @@ save.onclick = () => {
     department.value = department.options[0].value;
 }
 
-let table = document.querySelector('#admin-panel__table');
-table.onclick = (event) => {
+adminPanelTable.onclick = (event) => {
     let target = event.target;
     let index = target.dataset.index;
     if (target.className === 'admin-panel__editButton') editUser(index);
